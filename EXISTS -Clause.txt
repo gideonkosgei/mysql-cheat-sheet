@@ -1,0 +1,19 @@
+The EXISTS clause
+
+The EXISTS clause is used to return output from the outer query if the inner query returns any results. 
+
+SELECT region_name FROM region WHERE EXISTS
+  (SELECT region_id FROM winery GROUP BY region_id HAVING count(*) > 35);
+
+Whether you use the IN clause or the EXISTS clause is almost always a personal preference. 
+
+
+SELECT DISTINCT wine_id FROM items WHERE cust_id IN 
+  (SELECT customer.cust_id FROM customer 
+   INNER JOIN orders USING (cust_id)
+   GROUP BY cust_id HAVING count(order_id) >= 6);
+
+
+SELECT DISTINCT wine_id FROM items WHERE EXISTS 
+  (SELECT * FROM orders WHERE orders.cust_id = items.cust_id
+   GROUP BY cust_id HAVING count(order_id) >= 6);

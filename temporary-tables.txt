@@ -1,0 +1,30 @@
+a temporary table is a special type of table that allows you to store a temporary result set, 
+which you can reuse several times in a single session
+
+MySQL removes the temporary table automatically when the session ends or the connection is terminated. 
+you can use the  DROP TABLE statement to remove a temporary table explicitly when you are no longer use it.
+
+A temporary table can have the same name as a normal table in a database
+if you create a temporary table named employees in the sample database, the existing employees table
+becomes inaccessible
+When you drop the employees temporary table, the permanent employees table is available and accessible.
+
+CREATE TEMPORARY TABLE table_name(
+   column_1_definition,
+   column_2_definition,
+   ...,
+   table_constraints
+);
+
+CREATE TEMPORARY TABLE temp_table_name
+SELECT * FROM original_table
+LIMIT 0;
+
+CREATE TEMPORARY TABLE credits(
+    customerNumber INT PRIMARY KEY,
+    creditLimit DEC(10,2)
+);
+
+drop temporary table
+--------------------
+DROP TEMPORARY TABLE table_name;

@@ -1,0 +1,2 @@
+SELECT max(cust.name) FROM 
+  (SELECT concat(surname, " ", firstname) AS name FROM customer) AS cust;

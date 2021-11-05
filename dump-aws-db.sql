@@ -1,0 +1,1 @@
+ mysqldump.exe  --single-transaction --user=Gideon --host=ec2-18-222-108-130.us-east-2.compute.amazonaws.com  --port=3306  -p adgg_uat> adgg_uat.sql

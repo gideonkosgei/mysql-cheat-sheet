@@ -1,0 +1,7 @@
+SELECT FirstName, LastName, 
+       OrderCount = (SELECT COUNT(O.Id) FROM [Order] O WHERE O.CustomerId = C.Id)
+  FROM Customer C 
+
+SELECT SalesOrderID,LineTotal,
+(SELECT AVG(LineTotal) FROM Sales.SalesOrderDetail) AS AverageLineTotal
+FROM   Sales.SalesOrderDetail;

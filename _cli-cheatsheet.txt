@@ -1,0 +1,162 @@
+show environment varaibles
+-------------------------
+echo %variable-name%
+
+my connection string
+
+
+login
+------
+mysql -u USERNAME -h localhost-p database_name
+
+list databases
+--------------
+show databases;
+
+Access specific Database
+-----------------------
+use database_name
+
+List Tables
+---------------
+show tables;
+
+Show table definition
+---------------------
+describe tablename;
+show fields from table; 
+
+show processes
+--------------
+SHOW PROCESSLIST;
+
+Kill process
+------------
+KILL process_number;
+
+view system variables
+---------------------
+show variables; 
+
+Exit from mysql
+---------------
+exit;
+\q;
+
+create database
+----------------
+CREATE DATABASE databasename
+CREATE DATABASE databasename CHARACTER SET utf8
+
+DROP DATABASE databasename
+ALTER DATABASE databasename CHARACTER SET utf8
+
+Repair Tables After Unclean Shutdown
+mysqlcheck --all-databases
+mysqlcheck --all-databases --fast
+
+
+
+
+Create / Delete / Modify Table
+-------------------------------
+CREATE TABLE table (field1 type1, field2 type2, ...)
+CREATE TABLE table (field1 type1, field2 type2, ..., INDEX (field))
+CREATE TABLE table (field1 type1, field2 type2, ..., PRIMARY KEY (field1))
+CREATE TABLE table (field1 type1, field2 type2, ..., PRIMARY KEY (field1,field2))
+
+CREATE TABLE table1 (fk_field1 type1, field2 type2, ...,
+  FOREIGN KEY (fk_field1) REFERENCES table2 (t2_fieldA))
+    [ON UPDATE|ON DELETE] [CASCADE|SET NULL]
+
+CREATE TABLE table1 (fk_field1 type1, fk_field2 type2, ...,
+ FOREIGN KEY (fk_field1, fk_field2) REFERENCES table2 (t2_fieldA, t2_fieldB))
+
+
+CREATE TABLE table IF NOT EXISTS (...)
+CREATE TEMPORARY TABLE table (...)
+
+Drop
+-------
+DROP TABLE table
+DROP TABLE IF EXISTS table
+DROP TABLE table1, table2, ...
+
+ALTER
+--------------
+ALTER TABLE table MODIFY field1 type1
+ALTER TABLE table MODIFY field1 type1 NOT NULL ...
+ALTER TABLE table CHANGE old_name_field1 new_name_field1 type1
+ALTER TABLE table CHANGE old_name_field1 new_name_field1 type1 NOT NULL ...
+ALTER TABLE table ALTER field1 SET DEFAULT ...
+ALTER TABLE table ALTER field1 DROP DEFAULT
+ALTER TABLE table ADD new_name_field1 type1
+ALTER TABLE table ADD new_name_field1 type1 FIRST
+ALTER TABLE table ADD new_name_field1 type1 AFTER another_field
+ALTER TABLE table DROP field1
+ALTER TABLE table ADD INDEX (field);
+
+
+Reset Root Password
+$ /etc/init.d/mysql stop
+$ mysqld_safe --skip-grant-tables
+
+$ mysql # on another terminal
+mysql> UPDATE mysql.user SET password=PASSWORD('new_pass') WHERE user='root';
+## Switch back to the mysqld_safe terminal and kill the process using Control + \
+
+$ /etc/init.d/mysql start
+
+
+Backup Database to SQL File
+---------------------------
+mysqldump -u Username -p dbNameYouWant > databasename_backup.sql
+
+Restore from backup SQL File
+---------------------------
+mysql - u Username -p dbNameYouWant < databasename_backup.sql
+
+
+Users and Privileges
+---------------------
+GRANT ALL PRIVILEGES ON base.* TO 'user'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, DELETE ON base.* TO 'user'@'localhost' IDENTIFIED BY 'password';
+REVOKE ALL PRIVILEGES ON base.* FROM 'user'@'host'; -- one permission only
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user'@'host'; -- all permissions
+SET PASSWORD = PASSWORD('new_pass')
+SET PASSWORD FOR 'user'@'host' = PASSWORD('new_pass')
+SET PASSWORD = OLD_PASSWORD('new_pass')
+DROP USER 'user'@'host'
+
+
+show database in use
+----------------------
+select database();
+
+show logged user
+---------------
+select user();
+
+show database version
+---------------------
+select version();
+
+show current user
+-------------------
+select current_user();
+
+get last inserted ID
+---------------------
+select last_inserted_id(table_name);
+
+
+get row count
+-------------
+ROW_COUNT() function is used to return the number of rows affected by the previous SQL statement
+If the previous statement was not one that could potentially change data rows or you can say, it wasn't
+an INSERT, UPDATE, DELETE or other such statement this function will return -1
+
+select row_count();
+
+
+

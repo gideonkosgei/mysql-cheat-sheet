@@ -1,0 +1,9 @@
+SHOW PROCEDURE STATUS WHERE DB='databaseName'
+
+SELECT 
+    routine_name
+FROM
+    information_schema.routines
+WHERE
+    routine_type = 'PROCEDURE'
+     AND routine_schema = '<database_name>';

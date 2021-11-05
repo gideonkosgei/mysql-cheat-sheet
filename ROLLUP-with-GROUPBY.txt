@@ -1,0 +1,8 @@
+ WITH ROLLUP modifier provides subtotaling of grouped columns in output
+
+SELECT year, sum(price) FROM wine 
+  INNER JOIN items USING (wine_id)
+  GROUP BY year;
+
+SELECT year, sum(price) FROM wine INNER JOIN items USING (wine_id)
+  GROUP BY year WITH ROLLUP;
