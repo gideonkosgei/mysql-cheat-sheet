@@ -7,7 +7,9 @@ SELECT a.id,
 		where json_contains(a.additional_attributes, cast(`r`.`value` as json), '$."249"') and
 		r.list_type_id = 8        
     ) as data  
-FROM core_animal a WHERE a.id = 354269;
+FROM core_animal a WHERE a.id = 354272;
+
+
 
  
 
