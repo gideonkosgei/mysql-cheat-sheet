@@ -1,0 +1,4 @@
+
+mysql --max_allowed_packet=1000M -u root -p adgg_uat < /home/kosgei/Desktop/dev/work-space/databases/backup/adgg2021-12-21-12.00.01.sql
+
+
