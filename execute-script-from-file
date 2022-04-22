@@ -1,0 +1,5 @@
+mysql -h hostname -u user database < path/to/test.sql
+
+or
+
+mysql> source /home/kosgei/dumps/Dump20220422/adgg_uat_ethiopia_thi.sql
