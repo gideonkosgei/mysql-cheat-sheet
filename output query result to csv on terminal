@@ -1,0 +1,6 @@
+select * from v_ethiopia_thi where weight between 180 and 1000 and thi is not null and milk_composite !=0
+INTO OUTFILE '/home/kosgei/mysql-outputs/ethiopia_milk_component_thi.csv'
+FIELDS ENCLOSED BY '"'
+TERMINATED BY ';'
+ESCAPED BY '"'
+LINES TERMINATED BY '\r\n';
